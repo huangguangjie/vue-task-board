@@ -1,0 +1,22 @@
+{
+  "name": "vue-task-board",
+  "version": "0.0.0",
+  "description": "task board",
+  "private": false,
+  "keywords": [],
+  "scripts": {
+    "dev": "cooking watch -p",
+    "dist": "cooking build -p",
+    "deploy": "cooking build --no-color"
+  },
+  "author": "huangguangjie",
+  "license": "ISC",
+  "dependencies": {
+    "adaptive.js": "0.0.2",
+    "babel-polyfill": "*",
+    "vue": "^2.0.1"
+  },
+  "devDependencies": {
+    "cooking-vue2": "*"
+  }
+}
