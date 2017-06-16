@@ -1,17 +1,31 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import * as actions from './actions'
-
-import tasklist from './modules/tasklist'
-
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
-	actions,
-	modules: {
-		tasklist
-	}
-})
+const state = {
+	list: []
+}
 
-export default store
+const getters = {
+	list: state => state.list
+}
+
+const mutations = {
+	addNewTask(state,obj) {
+		state.list.push(obj)
+	}
+}
+
+const actions = {
+	addNewTask({ commit }, obj) {
+		commit('addNewTask',obj)
+	}
+}
+
+export default new Vuex.Store({
+	state,
+	getters,
+	actions,
+	mutations
+})
