@@ -3,8 +3,16 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+const STORAGE_KEY = 'TASK_LIST'
+
+if(navigator.userAgent.indexOf('PhantomJS') > -1) {
+	window.localStorage.clear()
+}
+
+// window.localStorage.clear()
+
 const state = {
-	list: []
+	list: JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]')
 }
 
 const getters = {
@@ -13,7 +21,8 @@ const getters = {
 
 const mutations = {
 	addNewTask(state,obj) {
-		state.list.push(obj)
+		state.list.splice(0,0,obj)
+		window.localStorage.setItem(STORAGE_KEY,JSON.stringify(state.list))
 	}
 }
 

@@ -13,6 +13,11 @@ export default new Router({
 	        component: TaskBoard
 	    },
 	    {
+	        path: '/taskboard',
+	        name: 'TaskBoard',
+	        component: TaskBoard
+	    },
+	    {
 	        path: '/newtask',
 	        name: 'NewTask',
 	        component: NewTask

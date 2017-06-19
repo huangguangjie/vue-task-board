@@ -7,7 +7,8 @@ export default {
 	name: 'app'
 };
 </script>
-<style>
+<style src="./assets/reset.css"></style>
+<style lang="scss">
 #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
