@@ -49,7 +49,7 @@ export default {
         this.$el.addEventListener('touchstart', this.itemTouchStart)
         this.$el.addEventListener('touchmove', this.itemTouchMove)
         this.$el.addEventListener('touchend', this.itemTouchEnd)
-            /* 初始化状态 */
+        /* 初始化状态 */
         let index = this.listData.indexOf(this.value)
         if (index === -1) {
             console.warn('当前初始值不存在，请检查后listData范围！！')
@@ -57,7 +57,7 @@ export default {
             this.getPickValue(0)
         } else {
             let move = index * 34
-                /* 因为往上滑动所以是负 */
+            /* 因为往上滑动所以是负 */
             this.setStyle(-move)
             this.setListTransform(-move, -move)
         }
@@ -109,7 +109,7 @@ export default {
             let finger = event.changedTouches[0]
             this.finger.lastY = finger.pageY
             this.finger.lastTime = event.timestamp || Date.now()
-                /* 设置css */
+            /* 设置css */
             let move = this.finger.lastY - this.finger.startY
             this.setStyle(move)
             event.preventDefault()
@@ -119,15 +119,15 @@ export default {
             this.finger.lastY = finger.pageY
             this.finger.lastTime = event.timestamp || Date.now()
             let move = this.finger.lastY - this.finger.startY
-                /* 计算速度 */
-                /* 速度计算说明
-                 * 当时间小于300毫秒 最后的移动距离等于 move + 减速运动距离
-                 * */
+            /* 计算速度 */
+            /* 速度计算说明
+             * 当时间小于300毫秒 最后的移动距离等于 move + 减速运动距离
+             * */
             let time = this.finger.lastTime - this.finger.startTime
             let v = move / time
-                /* 减速加速度a */
+            /* 减速加速度a */
             let a = 1.8
-                /* 设置css */
+            /* 设置css */
             if (time <= 300) {
                 move = v * a * time
                 time = 1000 + time * a
@@ -143,7 +143,7 @@ export default {
             const singleDeg = deg / singleHeight
             let currentListMove = this.finger.transformY
             let updateMove = move + Number(currentListMove)
-                /* 根据滚轮类型 line or cycle 判断 updateMove最大距离 */
+            /* 根据滚轮类型 line or cycle 判断 updateMove最大距离 */
             if (this.type === 'line') {
                 if (updateMove > 0) {
                     updateMove = 0
@@ -155,13 +155,13 @@ export default {
             let updateDeg = -updateMove * singleDeg
             let spinAim = Math.round(updateDeg / 20)
             let margin = Math.round(updateMove / singleHeight) * singleHeight // 如果不这么写 会导致没有滚动效果
-                /* 计算touchEnd移动的整数距离 */
+            /* 计算touchEnd移动的整数距离 */
             let endMove = margin
             let endDeg = Math.round(updateDeg / deg) * deg
             if (type === 'end') {
                 this.setListTransform(endMove, margin, type, time)
                 this.setWheelDeg(endDeg, type, time)
-                    /* 设置$emit 延迟 */
+                /* 设置$emit 延迟 */
                 setTimeout(() => this.getPickValue(endMove), 1000)
             } else {
                 this.setListTransform(updateMove, margin)

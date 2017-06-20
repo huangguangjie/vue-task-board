@@ -6,8 +6,8 @@
 		<input type="text" v-model="remark" placeholder="备注">
 		<button @click="addNewTask(task)">添加</button>
 	</div>
-	<div>{{ dateTime }} {{ hours }}:{{ minutes }}</div>
-	<DateTimePicker :curTime="curTime" @getDateTimeString="getDateTime"></DateTimePicker>
+	<div>{{ pickerDate.dateTime }} {{ pickerDate.hours }}:{{ pickerDate.minutes }}</div>
+	<DateTimePicker :curTime="new Date" @getDateTimeString="getDateTime"></DateTimePicker>
 </div>
 </template>
 <script>
@@ -20,25 +20,12 @@ var defaultData = {
 	remark: ''
 }
 
-const curTime = new Date();
-const DAY = ['周日','周一','周二','周三','周四','周五','周六'];
-const toDou = (num) => {
-    return num.toString().length > 1 ? '' + num : '0' + num;
-}
-
 export default {
 	data() {
 		return {
 			...defaultData,
-			curTime: new Date(),
-			dateTime: toDou(curTime.getMonth()) + '月' + toDou(curTime.getDate()) + '日' + ' ' + DAY[curTime.getDay()],
-			hours: toDou(curTime.getHours()),
-			minutes: toDou(curTime.getMinutes())
+			pickerDate: {}
 		}
-	},
-	mounted() {
-		this.getDateTime()
-		// console.log(this.dateList);
 	},
 	computed: {
 		...mapState({list: state => state.list }),
@@ -51,11 +38,14 @@ export default {
 		addNewTask(task) {
 			this.$store.commit('addNewTask', { ...task });
 			Object.assign(this.$data,defaultData);
-			// this.$router.go('/taskboard');
 			this.$router.push({ path: '/taskboard' });
 		},
-		getDateTime(dt) {
-			return dt;
+		getDateTime(dtObj) {
+			if(!!dtObj) {
+				for(var key in dtObj) {
+					this.$set(this.pickerDate, key, dtObj[key]);
+				}
+			}
 		}
 	},
 	components: {

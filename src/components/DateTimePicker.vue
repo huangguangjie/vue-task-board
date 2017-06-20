@@ -1,8 +1,8 @@
 <template>
 <div class="pd-select-box">
-	<picker :listData="dateList" v-model="dateTime" style="flex-shrink: 0.7"></picker>
-	<picker :listData="hourList" v-model="hours" type="cycle"></picker>
-	<picker :listData="minuteList" v-model="minutes" type="cycle"></picker>
+	<picker :listData="dateList" v-model="dateTime" style="flex-shrink: 0.7"  @input="inputDateTimeString"></picker>
+	<picker :listData="hourList" v-model="hours" type="cycle" @input="inputHours"></picker>
+	<picker :listData="minuteList" v-model="minutes" type="cycle" @input="inputMinutes"></picker>
 </div>
 </template>
 <script>
@@ -29,11 +29,41 @@ export default {
 			minutes: toDou(this.curTime.getMinutes())
 		}
 	},
+	computed: {
+		pickerList() {
+			return this.dateList.map((value, index) => {
+				return new Date(this.curTime.getTime() + (index - 182) * 24*60*60*1000)
+			})
+		},
+		pickerDate() {
+			let index = this.dateList.indexOf(this.dateTime)
+			return this.pickerList[index]
+		}
+	},
+	mounted() {
+		this.input()
+	},
 	methods: {
-		getDateTimeString() {
-			let dtstr = this.dateTime + ' ' + this.hours + ':' + this.minutes
-			// console.log(dtstr)
-			this.$emit('getDateTimeString', dtstr)
+		input() {
+			let dtObj = {
+				dateTime: this.dateTime,
+				hours: this.hours,
+				minutes: this.minutes,
+				pickerDate: this.pickerDate
+			}
+			this.$emit('getDateTimeString', dtObj)
+		},
+		inputDateTimeString(v) {
+			this.dateTime = v;
+			this.input();
+		},
+		inputHours(v) {
+			this.hours = v;
+			this.input();
+		},
+		inputMinutes(v) {
+			this.minutes = v;
+			this.input();
 		}
 	},
 	components: {
