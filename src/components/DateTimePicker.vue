@@ -20,11 +20,11 @@ export default {
 		return {
 			dateList: Array.from({ length: 365 }, (value,index) => {
 				let thisDate= new Date(this.curTime.getTime() + (index - 182) * 24*60*60*1000);
-				return toDou(thisDate.getMonth()) + '月' + toDou(thisDate.getDate()) + '日' + ' ' + DAY[thisDate.getDay()];
+				return toDou(thisDate.getMonth() + 1) + '月' + toDou(thisDate.getDate()) + '日' + ' ' + DAY[thisDate.getDay()];
 			}),
 			hourList: Array.from({ length: 24}, (value,index) => toDou(index) ),
 			minuteList: Array.from({ length: 60}, (value,index) => toDou(index) ),
-			dateTime: toDou(this.curTime.getMonth()) + '月' + toDou(this.curTime.getDate()) + '日' + ' ' + DAY[this.curTime.getDay()],
+			dateTime: toDou(this.curTime.getMonth() + 1) + '月' + toDou(this.curTime.getDate()) + '日' + ' ' + DAY[this.curTime.getDay()],
 			hours: toDou(this.curTime.getHours()),
 			minutes: toDou(this.curTime.getMinutes())
 		}

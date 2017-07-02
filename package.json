@@ -12,6 +12,7 @@
   "author": "huangguangjie",
   "license": "ISC",
   "dependencies": {
+    "animate.css": "^3.5.2",
     "axios": "^0.16.1",
     "babel-polyfill": "*",
     "vue": "^2.0.1"

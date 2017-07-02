@@ -9,7 +9,7 @@ if(navigator.userAgent.indexOf('PhantomJS') > -1) {
 	window.localStorage.clear()
 }
 
-// window.localStorage.clear()
+window.localStorage.clear()
 
 const state = {
 	list: JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]')

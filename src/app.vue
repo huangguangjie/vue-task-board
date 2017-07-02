@@ -8,6 +8,8 @@ export default {
 };
 </script>
 <style src="./assets/reset.css"></style>
+<style src="./assets/tasklist.less" lang="less"></style>
+<style src="./assets/newtask.less" lang="less"></style>
 <style lang="scss">
 #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;

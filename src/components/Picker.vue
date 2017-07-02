@@ -73,7 +73,7 @@ export default {
         },
         setWheelItemDeg(index) {
             return {
-                transform: `rotate3d(1, 0, 0, ${-index * 20 % 360}deg) translate3d(0px, 0px, 100px)`
+                transform: `rotate3d(1, 0, 0, ${-index * 20 % 360}deg) translate3d(0px, 0px, 10rem)`
             }
         },
         setWheelDeg(updateDeg, type, time = 1000) {
@@ -193,15 +193,15 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped="">
+<style lang="scss" scoped>
 html {
     font-family: 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif;
     line-height: 1.8;
 }
-$color-background: #fff;
-$color-checked: #2c97f1;
-$color-text-main: #333;
-$color-text-second: #a8a8a8;
+$color-background: none;
+$color-checked: #aaa;
+$color-text-main: #fff;
+$color-text-second: #aaa;
 
 .pd {
     &-select {
@@ -209,7 +209,7 @@ $color-text-second: #a8a8a8;
             overflow: hidden;
             width: 100%;
             text-align: center;
-            height: 220px;
+            height: 22rem;
             background: $color-background;
             position: relative;
         }
@@ -220,7 +220,7 @@ $color-text-second: #a8a8a8;
             position: absolute;
             left: 0;
             right: 0;
-            top: 93px;
+            top: 9.3rem;
         }
         &-line {
             z-index: 3;
@@ -240,14 +240,14 @@ $color-text-second: #a8a8a8;
                 display: table;
                 background: $color-checked;
                 width: 100%;
-                height: 2px;
+                height: .1rem;
                 -webkit-transform: scaleY(0.5);
                 transform: scaleY(0.5);
                 -webkit-transform-origin: 0 0;
                 transform-origin: 0 0;
             }
             &:before {
-                bottom: -1px;
+                bottom: 0;
                 top: auto;
             }
         }
@@ -266,7 +266,7 @@ $color-text-second: #a8a8a8;
             overflow: hidden;
             text-overflow: ellipsis;
             line-height: 34px;
-            font-size: 18px;
+            font-size: 1.4rem;
             color: $color-text-main;
 
             &.hidden {
